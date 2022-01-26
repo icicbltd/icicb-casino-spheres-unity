@@ -18,7 +18,7 @@ public class Main : MonoBehaviour
 {
     [DllImport("__Internal")]
     private static extern void GameReady(string msg);
-    public TMP_Text BetAmount;
+    public TMP_InputField BetAmount;
     public TMP_Text TotalAmount;
     public TMP_Text result_time;
     public TMP_Text result_money;
@@ -61,6 +61,7 @@ public class Main : MonoBehaviour
         if (flag == 0)
         {
             disable_increase.interactable = false;
+            betAmount = float.Parse(BetAmount.text);
             if (totalAmount >= 2 * betAmount)
             {
                 betAmount = 2 * betAmount;
@@ -93,6 +94,7 @@ public class Main : MonoBehaviour
         if (flag == 0)
         {
             disable_decrease.interactable = false;
+            betAmount = float.Parse(BetAmount.text);
             if (totalAmount >= betAmount / 2)
             {
                 if (betAmount / 2 >= 10)
@@ -133,6 +135,7 @@ public class Main : MonoBehaviour
         result_time.text = "";
         result_money.text = "";
         flag = 1;
+        betAmount = float.Parse(BetAmount.text);
         if (betAmount <= 0)
         {
             betAmount = 10;
@@ -167,6 +170,7 @@ public class Main : MonoBehaviour
     }
     private IEnumerator Server()
     {
+        betAmount = float.Parse(BetAmount.text);
         WWWForm form = new WWWForm();
         form.AddField("token", _player.token);
         form.AddField("betAmount", betAmount.ToString("F2"));
