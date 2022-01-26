@@ -66,7 +66,7 @@ public class Main : MonoBehaviour
             {
                 betAmount = 2 * betAmount;
             }
-            else if (totalAmount == 0)
+            else if (totalAmount < 10f)
             {
                 result_time.text = "";
                 result_money.text = "";
@@ -97,13 +97,13 @@ public class Main : MonoBehaviour
             betAmount = float.Parse(BetAmount.text);
             if (totalAmount >= betAmount / 2)
             {
-                if (betAmount / 2 >= 10)
+                if (betAmount / 2 >= 10f)
                 {
                     betAmount = betAmount / 2;
                 }
                 else
                 {
-                    betAmount = 10;
+                    betAmount = 10f;
                     result_time.text = "";
                     result_money.text = "";
                     result_time.text = "MINIMUM BET LIMIT";
@@ -112,9 +112,9 @@ public class Main : MonoBehaviour
 
                 }
             }
-            else if (totalAmount == 0)
+            else if (totalAmount < 10f)
             {
-                betAmount = 10;
+                betAmount = 10f;
                 result_time.text = "";
                 result_money.text = "";
                 result_time.text = "MINIMUM BET LIMIT";
@@ -136,13 +136,13 @@ public class Main : MonoBehaviour
         result_money.text = "";
         flag = 1;
         betAmount = float.Parse(BetAmount.text);
-        if (betAmount <= 0)
+        if (betAmount < 10)
         {
             betAmount = 10;
             result_time.text = "";
             result_money.text = "";
-            result_time.text = "WARNING";
-            result_money.text = "NOT ENOUGH BALANCE!";
+            result_time.text = "MINIMUM BET LIMIT";
+            result_money.text = "10.00";
             flag = 0;
             disable_Play.interactable = true;
         }
